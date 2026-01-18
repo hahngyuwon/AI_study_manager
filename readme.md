@@ -25,7 +25,9 @@ Python을 활용하여 **학습 타이머, 데이터 분석, 시각화, 생성�
 ## 설치
 ```bash
 pip install -r requirements.txt
+```
 
 ## 실행 방법
 ```bash
 streamlit run app.py
+```

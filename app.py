@@ -1085,7 +1085,7 @@ with tab1:
                     
                     # 휴식 시작 팝업이 떴다면 즉시 띄우기 위해 리런
                     if st.session_state.get("show_extension_dialog", False):
-                        st.rerun()
+                        st.session_state["need_main_rerun"] = True
                     return
 
                 # [CASE B] REST 종료 → FOCUS 넘어가기 "직전" 검사

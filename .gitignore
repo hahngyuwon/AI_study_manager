@@ -1,7 +1,9 @@
-@"
 __pycache__/
 *.pyc
 .streamlit/
-study_manager.db
 .DS_Store
-"@ | Out-File -Encoding utf8 .gitignore
+
+# SQLite DB (절대 커밋 안 함)
+study_manager.db
+data/*.db
+*.db

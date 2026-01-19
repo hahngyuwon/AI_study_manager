@@ -13,6 +13,9 @@ import streamlit as st
 from google import genai
 from google.genai import types
 
+from pathlib import Path
+
+
 # genai 버전 확인
 try:
     import importlib.metadata as im
@@ -21,7 +24,7 @@ except Exception:
     genai_version = "버전 확인 불가"
 
 # ==========================================
-# 0.5 열람실 좌석 규칙
+# 0. 열람실 좌석 규칙
 # ==========================================
 SEAT_CLOSE_HOUR = 23  # 23:00
 SEAT_OPEN_HOUR = 6    # 06:00
@@ -80,8 +83,11 @@ def format_hms(sec: float) -> str:
 # ==========================================
 # 1. DB 유틸
 # ==========================================
-DB_PATH = "study_manager.db"
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
+DATA_DIR.mkdir(exist_ok=True)
 
+DB_PATH = str(DATA_DIR / "study_manager.db")
 
 @st.cache_resource
 def get_conn() -> sqlite3.Connection:

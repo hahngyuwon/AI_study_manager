@@ -1023,7 +1023,8 @@ with tab1:
                             st.session_state["extension_seat_left_sec"] = float(max(0.0, seat_left_sec))
                     
                     st.session_state["show_extension_dialog"] = True
-                    st.rerun()
+                    st.session_state["need_main_rerun"] = True
+                    return
 
                 # 화면 표시: 꽉 찬 초록색 원 + 00:00 + 대기 문구
                 st.markdown(get_filled_pie_html(100, "#4CAF50", "00:00", "휴식(대기) ⛔"), unsafe_allow_html=True)
@@ -1108,7 +1109,7 @@ with tab1:
                             # 현재 시각으로 종료 시각을 고정해 타이머 멈춤 (00:00)
                             st.session_state["phase_end_dt"] = now 
                             
-                            st.rerun()
+                            st.session_state["need_main_rerun"] = True
                             return
 
                     # 문제 없으면 정상적으로 FOCUS 시작
@@ -1133,7 +1134,7 @@ with tab1:
                             st.session_state["extension_seat_left_sec"] = float(seat_left_sec)
 
                             st.session_state["show_extension_dialog"] = True
-                            st.rerun()
+                            st.session_state["need_main_rerun"] = True
                             return
         run_timer_fragment()
 
@@ -1332,7 +1333,7 @@ with tab2:
                 st.info("중단 기록이 없습니다.")
 
     else:
-        st.info("📊 아직 학습 기록이 없습니다. 타이머를 사용해 첫 데이터를 만들어보세요!")
+        st.info("📊 아직 학습 기록이 없습니다. 집중이 1분 이상 기록되어야 그래프가 생성됩니다. (테스트 모드 2분 집중을 1회 완료해보세요)")
 
     st.divider()
     st.subheader("✨ AI 상세 리포트")
